@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateClientTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateClientLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{clientController.selected.id}" title="#{bundle.CreateClientTitle_id}" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateClientLabel_fio}" for="fio" />
+                    <h:inputText id="fio" value="#{clientController.selected.fio}" title="#{bundle.CreateClientTitle_fio}" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_fio}"/>
+                    <h:outputLabel value="#{bundle.CreateClientLabel_phone}" for="phone" />
+                    <h:inputText id="phone" value="#{clientController.selected.phone}" title="#{bundle.CreateClientTitle_phone}" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_phone}"/>
+                    <h:outputLabel value="#{bundle.CreateClientLabel_passport}" for="passport" />
+                    <h:selectOneMenu id="passport" value="#{clientController.selected.passport}" title="#{bundle.CreateClientTitle_passport}" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_passport}">
+                        <f:selectItems value="#{passportController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateClientLabel_idAdress}" for="idAdress" />
+                    <h:selectOneMenu id="idAdress" value="#{clientController.selected.idAdress}" title="#{bundle.CreateClientTitle_idAdress}" required="true" requiredMessage="#{bundle.CreateClientRequiredMessage_idAdress}">
+                        <f:selectItems value="#{adressController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clientController.create}" value="#{bundle.CreateClientSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{clientController.prepareList}" value="#{bundle.CreateClientShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateClientIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

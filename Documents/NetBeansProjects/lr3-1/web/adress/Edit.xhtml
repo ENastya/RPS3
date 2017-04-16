@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAdressTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAdressLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{adressController.selected.id}" title="#{bundle.EditAdressTitle_id}" required="true" requiredMessage="#{bundle.EditAdressRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditAdressLabel_street}" for="street" />
+                    <h:inputText id="street" value="#{adressController.selected.street}" title="#{bundle.EditAdressTitle_street}" required="true" requiredMessage="#{bundle.EditAdressRequiredMessage_street}"/>
+                    <h:outputLabel value="#{bundle.EditAdressLabel_house}" for="house" />
+                    <h:inputText id="house" value="#{adressController.selected.house}" title="#{bundle.EditAdressTitle_house}" required="true" requiredMessage="#{bundle.EditAdressRequiredMessage_house}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{adressController.update}" value="#{bundle.EditAdressSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAdressViewLink}"/>
+                <br />
+                <h:commandLink action="#{adressController.prepareList}" value="#{bundle.EditAdressShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAdressIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
