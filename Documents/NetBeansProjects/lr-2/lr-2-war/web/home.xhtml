@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view>
+        <h:body>
+            <h:dataTable var="cl" value="#{clientbean.getClients()}" width="100%">
+                <h:column>
+                    <h:outputText value="#{cl.id}"/> 
+                    </h:column><h:column>
+                        <h:outputText value="#{cl.fio}"/> 
+                </h:column><h:column>
+                    <h:outputText value="#{cl.phone}"/>
+                </h:column><h:column>
+                    <h:outputText value="#{cl.passport.seria}"/>
+                </h:column><h:column>
+                    <h:outputText value="#{cl.passport.mumber}"/>
+                </h:column><h:column>
+                    <h:outputText value="#{cl.adress.street}"/>
+                </h:column><h:column>
+                    <h:outputText value="#{cl.adress.house}"/>
+                </h:column><h:column>
+                <h:form>
+                        <h:commandButton id="submit" value="Товары" action="#{clientbean.details(cl.id)}"/>
+                    </h:form></h:column>
+            </h:dataTable>
+        </h:body>
+    </f:view>
+</html>

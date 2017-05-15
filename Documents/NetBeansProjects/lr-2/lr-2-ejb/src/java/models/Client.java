@@ -7,24 +7,29 @@ package models;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
  *
  * @author Настя
  */
+
 @Entity
 public class Client implements Serializable {
 
-    @ManyToMany(mappedBy = "clients")
-    private List<Order> orders;
+    
 
+    
+   
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    private List<Request> request;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -127,18 +132,20 @@ public class Client implements Serializable {
         this.passport = passport;
     }
 
+
+
     /**
-     * @return the orders
+     * @return the request
      */
-    public List<Order> getOrders() {
-        return orders;
+    public List<Request> getRequest() {
+        return request;
     }
 
     /**
-     * @param orders the orders to set
+     * @param request the request to set
      */
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setRequest(List<Request> request) {
+        this.request = request;
     }
-    
+  
 }

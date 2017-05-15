@@ -6,12 +6,10 @@
 package models;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -20,7 +18,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Adress implements Serializable {
 
-    @OneToMany(mappedBy = "adress")
+    
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -28,6 +26,7 @@ public class Adress implements Serializable {
     private Long id;
     private String street;
     private String house;
+    
     public Long getId() {
         return id;
     }

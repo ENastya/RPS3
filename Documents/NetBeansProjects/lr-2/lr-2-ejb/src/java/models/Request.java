@@ -6,28 +6,32 @@
 package models;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Настя
  */
 @Entity
-public class Order implements Serializable {
+public class Request implements Serializable {
+
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    @ManyToOne (optional = false)
+    private Client client;
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
-    private int prise;
-    @ManyToMany
-    private List <Client> clients;
+    private int price;
+    
     public Long getId() {
         return id;
     }
@@ -39,18 +43,18 @@ public class Order implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (getId() != null ? getId().hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order)) {
+        if (!(object instanceof Request)) {
             return false;
         }
-        Order other = (Order) object;
-        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id))) {
+        Request other = (Request) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -58,7 +62,7 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Order[ id=" + getId() + " ]";
+        return "models.Request[ id=" + id + " ]";
     }
 
     /**
@@ -76,31 +80,31 @@ public class Order implements Serializable {
     }
 
     /**
-     * @return the prise
+     * @return the price
      */
-    public int getPrise() {
-        return prise;
+    public int getPrice() {
+        return price;
     }
 
     /**
-     * @param prise the prise to set
+     * @param price the price to set
      */
-    public void setPrise(int prise) {
-        this.prise = prise;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     /**
-     * @return the clients
+     * @return the client
      */
-    public List <Client> getClients() {
-        return clients;
+    public Client getClient() {
+        return client;
     }
 
     /**
-     * @param clients the clients to set
+     * @param client the client to set
      */
-    public void setClients(List <Client> clients) {
-        this.clients = clients;
+    public void setClient(Client client) {
+        this.client = client;
     }
     
 }
