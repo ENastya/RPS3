@@ -14,5 +14,12 @@ and open the template in the editor.
     </head>
     <body>
         <h:outputText value="#{clientbean.getClient().fio}"/>
+        <h:dataTable var="cl" value="#{clientbean.getClient().request}" width="100%">
+                <h:column>
+                    <h:outputText value="#{cl.name}"/> 
+                    </h:column><h:column>
+                        <h:outputText value="#{cl.price}"/> 
+                </h:column>
+            </h:dataTable>
     </body>
 </html>

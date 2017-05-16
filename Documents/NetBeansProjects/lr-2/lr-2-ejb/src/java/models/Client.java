@@ -12,6 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -28,7 +31,13 @@ public class Client implements Serializable {
 
     
    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    @ManyToMany
+    @JoinTable(name="client_request",
+        joinColumns=
+            @JoinColumn(name="client_ID", referencedColumnName="ID"),
+        inverseJoinColumns=
+            @JoinColumn(name="request_ID", referencedColumnName="ID")
+        )
     private List<Request> request;
     private static final long serialVersionUID = 1L;
     @Id

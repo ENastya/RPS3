@@ -6,11 +6,13 @@
 package models;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -21,8 +23,8 @@ import javax.persistence.ManyToOne;
 public class Request implements Serializable {
 
     @JoinColumn(name = "client_id", referencedColumnName = "id")
-    @ManyToOne (optional = false)
-    private Client client;
+    @ManyToMany(mappedBy="request")
+    private List <Client> client;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -96,14 +98,14 @@ public class Request implements Serializable {
     /**
      * @return the client
      */
-    public Client getClient() {
+    public List<Client> getClient() {
         return client;
     }
 
     /**
      * @param client the client to set
      */
-    public void setClient(Client client) {
+    public void setClient(List<Client> client) {
         this.client = client;
     }
     
